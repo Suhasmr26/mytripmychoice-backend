@@ -17,8 +17,10 @@ public class AIService {
         prompt.append("Destination: ").append(request.getDestination()).append("\n");
         prompt.append("Budget: Rs.").append(request.getBudget()).append("\n");
         prompt.append("Travel Mode: ").append(request.getTravelMode()).append("\n");
+prompt.append("Number of Days: ").append(request.getDays()).append("\n");
         prompt.append("Members:\n");
         for (TripRequest.MemberDto m : request.getMembers()) {
+
             prompt.append("- ").append(m.getName())
                   .append(", Age: ").append(m.getAge())
                   .append(", Sex: ").append(m.getSex()).append("\n");
