@@ -34,7 +34,7 @@ prompt.append("Number of Days: ").append(request.getDays()).append("\n");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
-  String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=" + apiKey;
+  String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=" + apiKey;
 
             Map<String, Object> body = new HashMap<>();
             Map<String, Object> content = new HashMap<>();
