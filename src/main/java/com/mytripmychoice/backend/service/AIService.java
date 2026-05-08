@@ -8,7 +8,7 @@ import java.util.*;
 @Service
 public class AIService {
 
-    private String apiKey = "AIzaSyCCznbJ9vzSBe-ijK2gFZD1XH0MKW4afoU";
+    private String apiKey = "AIzaSyCakRVlBhEZ32JvXlHLieyfLfGPDAB2EaY";
 
     public String generateTripPlan(TripRequest request) {
         StringBuilder prompt = new StringBuilder();
