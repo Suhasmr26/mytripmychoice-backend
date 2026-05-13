@@ -1,4 +1,6 @@
 package com.mytripmychoice.backend.service;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
@@ -8,7 +10,8 @@ import java.util.*;
 @Service
 public class AIService {
 
-    private String apiKey = "AIzaSyCakRVlBhEZ32JvXlHLieyfLfGPDAB2EaY";
+    @Value("${gemini.api.key}")
+    private String apiKey;
 
     public String generateTripPlan(TripRequest request) {
         StringBuilder prompt = new StringBuilder();
@@ -17,10 +20,9 @@ public class AIService {
         prompt.append("Destination: ").append(request.getDestination()).append("\n");
         prompt.append("Budget: Rs.").append(request.getBudget()).append("\n");
         prompt.append("Travel Mode: ").append(request.getTravelMode()).append("\n");
-prompt.append("Number of Days: ").append(request.getDays()).append("\n");
+        prompt.append("Number of Days: ").append(request.getDays()).append("\n");
         prompt.append("Members:\n");
         for (TripRequest.MemberDto m : request.getMembers()) {
-
             prompt.append("- ").append(m.getName())
                   .append(", Age: ").append(m.getAge())
                   .append(", Sex: ").append(m.getSex()).append("\n");
@@ -34,7 +36,8 @@ prompt.append("Number of Days: ").append(request.getDays()).append("\n");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
 
-  String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=" + apiKey;
+            // ✅ Fixed: removed -exp from model name
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
 
             Map<String, Object> body = new HashMap<>();
             Map<String, Object> content = new HashMap<>();
